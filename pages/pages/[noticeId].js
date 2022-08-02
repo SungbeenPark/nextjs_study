@@ -5,20 +5,19 @@ export const getStaticPaths = async () => {
     const res = await fetch(url)
     const obj = await res.json()
     const list = obj.success? obj.result:null
-    console.log(list)
     return {
 
-        paths:[
-                {params:{noticeId:"N0000000000000000001"}},
-                {params:{noticeId:"N0000000000000000002"}},
-                {params:{noticeId:"N0000000000000000003"}},
-            ]
+        // paths:[
+        //         {params:{noticeId:"N0000000000000000001"}},
+        //         {params:{noticeId:"N0000000000000000002"}},
+        //         {params:{noticeId:"N0000000000000000003"}},
+        //     ]
 
-        // paths: list.slice(0,9).map(item=>({
-        //     params:{
-        //         noticeId : item.noticeId.toString()
-        //     }
-        // }))
+        paths: list.slice(0,9).map(item=>({
+            params:{
+                noticeId : item.noticeId.toString()
+            }
+        }))
         ,fallback:true
     };
 }
