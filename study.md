@@ -21,6 +21,8 @@ npx create-next-app@latest [프로젝트명]
   pages/index.js -> https://yourdomain/
   pages/test/index.js -> https://yourdomain/test
   pages/test/subtest.js -> https://yourdomain/test/subtest
+  pages/test/[noticeId].js -> https://yourdomain/test/1 //id라는 변수에 1을 넘겨줌 pathvariable
+
   ``` 
   - pages/_app.js 최초 실행되는 파일
   - pages/_document.js meta Tag의 정의 및 모든페이지의 구조를 만듬.
@@ -39,12 +41,12 @@ npx create-next-app@latest [프로젝트명]
 - styles : 스타일 관련 파일모음
 
 
-### 4. helloword 찍어보기
+### 4. HelloWolrd찍기
 
 ### 5. nextjs의 랜더링들 [Vercel공식문서 DataFetching](https://nextjs.org/docs/basic-features/data-fetching/overview)
 - getServerSideProps[요청시] : 해당 페이지가 요청될 때 마다 재요청, 느리지만 동적 구성.
 - getStaticProps[빌드시] : 페이지콘텐츠가 외부 데이터와 연동될 경우, preRendering
-- getStaticPaths : 페이지 경로가 외부 데이터로 연동 pages/posts/[id].js 같은 id값마다 랜더링
+- getStaticPaths : 페이지 경로가 외부 데이터로 연동 pages/posts/[noticeId].js 같은 id값마다 랜더링
 
 ### 6. 리스트형식으로 출력해보기
 - 목록 : http://b-tour.kr/block-tour-front/api/cmmn/noticelist
@@ -56,3 +58,7 @@ npx create-next-app@latest [프로젝트명]
 > react의 경우는 정적파일들로만 배포가 가능하여 aws s3에서 구동이 가능하다.
 > backend 지원을 위해 배포방법은 다양하나 vercel에서 배포하는게 손쉽다.
 > 다른방법으로는 pm2이용하여 서버 구성하여 사용합니다. 다른방법도 존재하나 사용해보지 못함.
+
+
+### 주의사항
+> nextjs는 dev환경에서는 정상동작을하나 실제 build 단계에서 오류가 날수있으니. 항상 push전 build를 해봐야한다.
