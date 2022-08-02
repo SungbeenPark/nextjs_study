@@ -1,5 +1,5 @@
 # nextjs 교육용 프로젝트
-> 설명 계획
+> 설명 계획 
 
 ### 1. next.js를 사용해야하는이유
    - seo,ssr,typeScript까지 기능을 제공해주는 react용 프레임워크
@@ -46,7 +46,13 @@ npx create-next-app@latest [프로젝트명]
 - getStaticProps[빌드시] : 페이지콘텐츠가 외부 데이터와 연동될 경우, preRendering
 - getStaticPaths : 페이지 경로가 외부 데이터로 연동 pages/posts/[id].js 같은 id값마다 랜더링
 
-
 ### 6. 리스트형식으로 출력해보기
 - 목록 : http://b-tour.kr/block-tour-front/api/cmmn/noticelist
 - 상세 : http://b-tour.kr/block-tour-front/api/cmmn/noticeview?noticeId=N12
+
+### 기타
+> 경우에 따라 react와 운영 방법이 다름.
+> backend를 지원해야하는 nextjs 프로젝트는 백엔드처럼 실시간 구동되고있어야하므로 정적파일들로만 배포가 어렵다.
+> react의 경우는 정적파일들로만 배포가 가능하여 aws s3에서 구동이 가능하다.
+> backend 지원을 위해 배포방법은 다양하나 vercel에서 배포하는게 손쉽다.
+> 다른방법으로는 pm2이용하여 서버 구성하여 사용합니다. 다른방법도 존재하나 사용해보지 못함.
