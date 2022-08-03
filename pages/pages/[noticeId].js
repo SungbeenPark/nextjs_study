@@ -1,23 +1,23 @@
 import {useRouter} from "next/router";
 
 export const getStaticPaths = async () => {
-    const url = 'https://www.b-tour.kr/block-tour-front/api/cmmn/noticelist'
-    const res = await fetch(url)
-    const obj = await res.json()
-    const list = obj.success? obj.result:null
+    // const url = 'https://www.b-tour.kr/block-tour-front/api/cmmn/noticelist'
+    // const res = await fetch(url)
+    // const obj = await res.json()
+    // const list = obj.success? obj.result:null
     return {
 
-        // paths:[
-        //         {params:{noticeId:"N0000000000000000001"}},
-        //         {params:{noticeId:"N0000000000000000002"}},
-        //         {params:{noticeId:"N0000000000000000003"}},
-        //     ]
+        paths:[
+                {params:{noticeId:"N0000000000000000001"}},
+                {params:{noticeId:"N0000000000000000002"}},
+                {params:{noticeId:"N0000000000000000003"}},
+            ]
 
-        paths: list.slice(0,9).map(item=>({
-            params:{
-                noticeId : item.noticeId.toString()
-            }
-        }))
+        // paths: list.slice(0,9).map(item=>({
+        //     params:{
+        //         noticeId : item.noticeId.toString()
+        //     }
+        // }))
         ,fallback:true
     };
 }

@@ -24,7 +24,7 @@ const Page2 = ({feed})=>{
         {feed.map((post) => (
             <div key={post.id} className="post" onClick={() => Router.push("/pages/page2/[id]", `/pages/page2/${post.id}`)} style={{marginTop:"10px",padding:"5px",border:"solid"}}>
                 {post.title} | {post.author ? post.author.name : "Unknown author"}
-                <ReactMarkdown children={post.content} />
+                <div>{post.content}</div>
             </div>
         ))}
     </div>)
