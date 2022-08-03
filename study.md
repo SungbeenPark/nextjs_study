@@ -55,6 +55,9 @@ npx create-next-app@latest [프로젝트명]
 ### 7. DB연결 (Prisma) [Vercel 공식문서 How to Build a Fullstack App](https://vercel.com/guides/nextjs-prisma-postgres)
 - Prisma 는 ORM으로 Database를 접속하고 마이그레이션.
 - prisma 설치 
+<details>
+<summary> prisma 설치 </summary>
+
 ```
 npm install prisma --save-dev
 ```
@@ -132,6 +135,22 @@ if (process.env.NODE_ENV === 'production') {
 
 export default prisma;
 
+```
+</details>
+
+### 8. useSWR 실시간 데이터 조회가 필요한 경우. [vercel 제공 SWR 문서](https://swr.vercel.app/ko)
+> SWR을 사용하면 컴포넌트는 지속적이며 자동으로 데이터 업데이트 스트림을 받게 됩니다.  
+> 그리고 UI는 항상 빠르고 반응적입니다.
+```javascript
+import useSWR from 'swr'
+
+function Profile() {
+  const { data, error } = useSWR('/api/user', fetcher)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+  return <div>hello {data.name}!</div>
+}
 ```
 
 

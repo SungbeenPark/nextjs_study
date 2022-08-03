@@ -9,6 +9,7 @@ const Header = ()=>{
                     <Link href="/pages/page1" >page1</Link>&nbsp;&nbsp;&nbsp;&nbsp;
                     <Link href="/pages/page2" >page2</Link>&nbsp;&nbsp;&nbsp;&nbsp;
                     <Link href="/pages/page3" >page3</Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link href="/pages/page4" >page4</Link>
                 </div>
             </div>
         </header>
