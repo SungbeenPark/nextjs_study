@@ -52,6 +52,91 @@ npx create-next-app@latest [프로젝트명]
 - 목록 : http://b-tour.kr/block-tour-front/api/cmmn/noticelist
 - 상세 : http://b-tour.kr/block-tour-front/api/cmmn/noticeview?noticeId=N12
 
+### 7. DB연결 (Prisma) [Vercel 공식문서 How to Build a Fullstack App](https://vercel.com/guides/nextjs-prisma-postgres)
+- Prisma 는 ORM으로 Database를 접속하고 마이그레이션.
+- prisma 설치 
+```
+npm install prisma --save-dev
+```
+- prisma 초기화 
+```
+npx prisma init
+```
+- 설치 확인사항
+  - /prisma 폴더 생성 확인
+  - /prisma/schema.prisma 생성 확인
+  - .env 파일 생성 확인
+- database schema 생성
+```prisma
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  id        String     @default(cuid()) @id
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  posts         Post[]
+  @@map(name: "users")
+}
+```
+- 연결된 database에 push
+```
+npx prisma db push
+```
+- prisma 스튜디오로 확인
+```
+npx prisma studio
+```
+- install Prisma Client
+```
+npm install @prisma/client
+```
+- 스키마 파일 업데이트
+```
+npx prisma generate
+```
+
+- lib/prisma.js 파일 생성
+```javascript
+// lib/prisma.js
+import { PrismaClient } from '@prisma/client';
+
+let prisma;
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
+
+export default prisma;
+
+```
+
+
+### NextAuth 는 누군가 만들어둔 OAuth 모듈 (사용할있으면 하고 없으면 굳이.. )
+
 ### 기타
 > 경우에 따라 react와 운영 방법이 다름.
 > backend를 지원해야하는 nextjs 프로젝트는 백엔드처럼 실시간 구동되고있어야하므로 정적파일들로만 배포가 어렵다.
