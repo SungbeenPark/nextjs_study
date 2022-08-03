@@ -1,5 +1,4 @@
 import prisma from '../../lib/prisma';
-import ReactMarkdown from "react-markdown";
 import Router from "next/router";
 
 export const getStaticProps = async () => {
